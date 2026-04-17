@@ -1,0 +1,53 @@
+:root {
+  --bg: #0a0a0a;
+  --text: #c8c8c8;
+  --dim: #4a4a4a;
+  --accent: #66fcf1;
+  --font: 'JetBrains Mono', 'Courier New', monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body, #root {
+  margin: 0; padding: 0;
+  width: 100vw; height: 100vh;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+}
+
+pre {
+  margin: 0;
+  font-family: var(--font);
+  font-size: clamp(8px, 0.8vw, 12px);
+  line-height: 1.5;
+  white-space: pre;
+  color: var(--text);
+}
+
+.accent { color: var(--accent); }
+
+.cursor {
+  animation: blink 1s step-end infinite;
+}
+.cursor--active { color: var(--accent); }
+.cursor--idle   { color: var(--dim); }
+
+[data-nav] {
+  cursor: pointer;
+  transition: color 0.15s ease, opacity 0.15s ease;
+}
+[data-nav]:hover { color: var(--accent); }
+[data-nav][data-active="true"] { color: var(--accent); }
+
+.app-root {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.app-root.ready { opacity: 1; }
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
