@@ -1,4 +1,5 @@
 import { ScrambleText } from '../ScrambleText';
+import { useMeta } from '../../hooks/useMeta';
 
 const BODY = `[LYKOS SAFE]
   Multi-sig transaction simulation layer
@@ -23,6 +24,7 @@ const BODY = `[LYKOS SAFE]
 > index complete.`;
 
 export function Projects() {
+  useMeta({ title: 'Projects — Abhiram Chandrasekhar', description: 'LyKos Safe, g0 Protocol, Carbon Crowd and internal tooling.' });
   return (
     <pre>
       <ScrambleText text="PROJECT_DB_ACCESS" className="accent" />

@@ -1,6 +1,7 @@
 import { ScrambleText } from '../ScrambleText';
 import { Typewriter } from '../Typewriter';
 import { useSystem } from '../../contexts/SystemContext';
+import { useMeta } from '../../hooks/useMeta';
 
 const CONTENT = [
   '> initializing identity...',
@@ -24,6 +25,11 @@ const CONTENT = [
 const SCRAMBLE_LINES = new Set([2, 5, 10]);
 
 export function Home() {
+  useMeta({
+    title: 'Abhiram Chandrasekhar — ASCII Portfolio',
+    description: 'Web3 security researcher and protocol designer. CEO of LyKos Labs.',
+    keywords: 'Web3 security, EVM, LyKos Safe, g0 Protocol, protocol design',
+  });
   const { rendered, markRendered } = useSystem();
   const isRendered = rendered['home'];
 

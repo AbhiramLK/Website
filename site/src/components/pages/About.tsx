@@ -1,4 +1,5 @@
 import { ScrambleText } from '../ScrambleText';
+import { useMeta } from '../../hooks/useMeta';
 
 const BODY = `[OPERATOR]
   Abhiram Chandrasekhar
@@ -22,6 +23,7 @@ const BODY = `[OPERATOR]
 > profile loaded.`;
 
 export function About() {
+  useMeta({ title: 'About — Abhiram Chandrasekhar', description: 'Background in mechanical engineering, now building at the intersection of security and distributed systems.' });
   return (
     <pre>
       <ScrambleText text="USER_PROFILE_DATA" className="accent" />

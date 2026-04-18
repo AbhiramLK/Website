@@ -2,8 +2,10 @@ import posts from '../../data/posts.json';
 import { useSystem } from '../../contexts/SystemContext';
 import { ScrambleText } from '../ScrambleText';
 import type { Post } from '../../types/post';
+import { useMeta } from '../../hooks/useMeta';
 
 export function Blog() {
+  useMeta({ title: 'Blog — Abhiram Chandrasekhar', description: 'Technical writing on EVM security, protocol design, and infrastructure.' });
   const { setBlogSlug, setActivePage } = useSystem();
   const sorted = [...(posts as Post[])].sort((a, b) => b.date.localeCompare(a.date));
 

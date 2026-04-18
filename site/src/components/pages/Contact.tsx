@@ -1,4 +1,5 @@
 import { ScrambleText } from '../ScrambleText';
+import { useMeta } from '../../hooks/useMeta';
 
 const BODY = `[CHANNELS]
   Email     abhiram@lykoslabs.xyz
@@ -19,6 +20,7 @@ const BODY = `[CHANNELS]
 > link established.`;
 
 export function Contact() {
+  useMeta({ title: 'Contact — Abhiram Chandrasekhar', description: 'Open for protocol audits, advisory roles, and research collaboration.' });
   return (
     <pre>
       <ScrambleText text="COMMUNICATION_LINK_ESTABLISHED" className="accent" />
