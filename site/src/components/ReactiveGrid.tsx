@@ -38,16 +38,22 @@ export function ReactiveGrid() {
       dirtyRef.current = true;
     };
 
-    resize();
-    window.addEventListener('resize', resize);
-    window.addEventListener('mousemove', e => {
+    const onMouseMove = (e: MouseEvent) => {
       mouseRef.current = { x: e.clientX, y: e.clientY };
       dirtyRef.current = true;
-    });
-    window.addEventListener('mouseleave', () => {
+    };
+    const onMouseLeave = () => {
       mouseRef.current = { x: -9999, y: -9999 };
       dirtyRef.current = true;
+    };
+
+    resize();
+    document.fonts.ready.then(() => {
+      dirtyRef.current = true;
     });
+    window.addEventListener('resize', resize);
+    window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('mouseleave', onMouseLeave);
 
     const render = () => {
       if (dirtyRef.current) {
@@ -79,6 +85,8 @@ export function ReactiveGrid() {
     return () => {
       cancelAnimationFrame(rafRef.current);
       window.removeEventListener('resize', resize);
+      window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('mouseleave', onMouseLeave);
     };
   }, [build]);
 
