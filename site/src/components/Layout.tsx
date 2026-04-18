@@ -13,14 +13,14 @@ export function Layout({ left, right }: Props) {
       <ReactiveGrid />
       <Nav />
 
-      <div style={{
+      <div className="layout-split" style={{
         position: 'relative', zIndex: 1,
         display: 'flex',
         height: '100vh',
         paddingTop: '3rem',
       }}>
         {/* LEFT — ASCII visual */}
-        <div style={{
+        <div className="layout-left" style={{
           flexShrink: 0,
           padding: '2rem',
           display: 'flex',

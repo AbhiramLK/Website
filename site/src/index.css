@@ -36,7 +36,6 @@ pre {
 
 [data-nav] {
   cursor: pointer;
-  transition: color 0.15s ease, opacity 0.15s ease;
 }
 [data-nav]:hover { color: var(--accent); }
 [data-nav][data-active="true"] { color: var(--accent); }
@@ -50,4 +49,14 @@ pre {
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50%       { opacity: 0; }
+}
+
+@media (max-width: 900px) {
+  .layout-split {
+    flex-direction: column;
+  }
+  .layout-left {
+    border-bottom: 1px solid rgba(74,74,74,0.3);
+    border-left: none !important;
+  }
 }
