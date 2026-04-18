@@ -48,6 +48,7 @@ export function SystemProvider({ children }: { children: ReactNode }) {
   );
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useSystem() {
   const ctx = useContext(SystemContext);
   if (!ctx) throw new Error('useSystem outside SystemProvider');

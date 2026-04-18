@@ -12,6 +12,13 @@ export function Admin() {
   const [editing, setEditing] = useState<Partial<Post>>({});
   const [error, setError] = useState('');
 
+  const loadPosts = useCallback(async (token: string) => {
+    const res = await fetch('/api/posts', {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    setPosts(await res.json() as Post[]);
+  }, []);
+
   const login = useCallback(async () => {
     const res = await fetch('/api/auth', {
       method: 'POST',
@@ -23,14 +30,7 @@ export function Admin() {
     setAdminToken(token);
     setMode('list');
     loadPosts(token);
-  }, [password, setAdminToken]);
-
-  const loadPosts = useCallback(async (token: string) => {
-    const res = await fetch('/api/posts', {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    setPosts(await res.json() as Post[]);
-  }, []);
+  }, [password, setAdminToken, loadPosts]);
 
   const save = useCallback(async () => {
     if (!adminToken) return;

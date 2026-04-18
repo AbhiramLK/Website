@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useLayoutEffect, useRef } from 'react';
 
 interface Props {
   text: string;
@@ -10,11 +10,10 @@ export function Typewriter({ text, speed = 20, onComplete }: Props) {
   const [displayed, setDisplayed] = useState('');
   const indexRef = useRef(0);
   const onCompleteRef = useRef(onComplete);
-  onCompleteRef.current = onComplete;
+  useLayoutEffect(() => { onCompleteRef.current = onComplete; });
 
   useEffect(() => {
     indexRef.current = 0;
-    setDisplayed('');
 
     const tick = setInterval(() => {
       indexRef.current++;

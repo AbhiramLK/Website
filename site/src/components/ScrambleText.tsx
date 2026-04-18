@@ -1,6 +1,6 @@
 import { useState, useRef, useCallback } from 'react';
 
-const POOL = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#@$%&*!?/\|[]{}';
+const POOL = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#@$%&*!?/|[]{}';
 const STEPS = 8;
 const STEP_MS = 40;
 
