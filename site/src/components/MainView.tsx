@@ -9,6 +9,7 @@ import { Projects } from './pages/Projects';
 import { Blog } from './pages/Blog';
 import { BlogPost } from './pages/BlogPost';
 import { Contact } from './pages/Contact';
+import { Admin } from './pages/Admin';
 
 const ASCII_LEFT = `
  ██████╗
@@ -36,7 +37,7 @@ export function MainView() {
     return () => { clearTimeout(t); window.removeEventListener('mousemove', reset); window.removeEventListener('keydown', reset); };
   }, [setIdle]);
 
-  const pages = { home: <Home />, about: <About />, projects: <Projects />, blog: blogSlug ? <BlogPost /> : <Blog />, contact: <Contact /> };
+  const pages = { home: <Home />, about: <About />, projects: <Projects />, blog: blogSlug ? <BlogPost /> : <Blog />, contact: <Contact />, admin: <Admin /> };
 
   return (
     <Layout

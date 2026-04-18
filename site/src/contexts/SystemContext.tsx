@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, useCallback, useMemo } from 'react';
 import type { ReactNode } from 'react';
 
-export type Page = 'home' | 'about' | 'projects' | 'blog' | 'contact';
+export type Page = 'home' | 'about' | 'projects' | 'blog' | 'contact' | 'admin';
 
 interface Ctx {
   activePage: Page;
@@ -12,6 +12,8 @@ interface Ctx {
   markRendered: (p: Page) => void;
   blogSlug: string | null;
   setBlogSlug: (s: string | null) => void;
+  adminToken: string | null;
+  setAdminToken: (t: string | null) => void;
 }
 
 const SystemContext = createContext<Ctx | undefined>(undefined);
@@ -21,14 +23,22 @@ export function SystemProvider({ children }: { children: ReactNode }) {
   const [isIdle, setIdle] = useState(false);
   const [rendered, setRendered] = useState<Partial<Record<Page, boolean>>>({});
   const [blogSlug, setBlogSlug] = useState<string | null>(null);
+  const [adminToken, setAdminToken] = useState<string | null>(
+    () => sessionStorage.getItem('admin_token')
+  );
+  const setAdminTokenPersist = (t: string | null) => {
+    if (t) sessionStorage.setItem('admin_token', t);
+    else sessionStorage.removeItem('admin_token');
+    setAdminToken(t);
+  };
 
   const markRendered = useCallback((p: Page) => {
     setRendered(prev => ({ ...prev, [p]: true }));
   }, []);
 
   const value = useMemo(
-    () => ({ activePage, setActivePage, isIdle, setIdle, rendered, markRendered, blogSlug, setBlogSlug }),
-    [activePage, isIdle, rendered, markRendered, blogSlug]
+    () => ({ activePage, setActivePage, isIdle, setIdle, rendered, markRendered, blogSlug, setBlogSlug, adminToken, setAdminToken: setAdminTokenPersist }),
+    [activePage, isIdle, rendered, markRendered, blogSlug, adminToken]
   );
 
   return (

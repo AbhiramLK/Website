@@ -13,6 +13,14 @@ export function useKeyboardNav() {
     const onKey = (e: KeyboardEvent) => {
       const tag = (e.target as HTMLElement).tagName;
       if (tag === 'INPUT' || tag === 'TEXTAREA') return;
+
+      // Admin shortcut — must be checked before the modifier guard
+      if (e.ctrlKey && e.shiftKey && e.key === 'A') {
+        e.preventDefault();
+        setActivePage('admin');
+        return;
+      }
+
       if (e.ctrlKey || e.metaKey || e.altKey) return;
       const page = MAP[e.key.toLowerCase()];
       if (page) { e.preventDefault(); setActivePage(page); }
