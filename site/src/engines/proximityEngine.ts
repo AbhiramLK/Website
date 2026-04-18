@@ -22,6 +22,11 @@ export function initProximityEngine() {
 
   const tick = () => {
     for (const el of getElements()) {
+      if (el.dataset.active === 'true') {
+        el.style.color = '';
+        el.style.opacity = '';
+        continue;
+      }
       const rect = el.getBoundingClientRect();
       const dx = Math.max(rect.left - cx, 0, cx - rect.right);
       const dy = Math.max(rect.top - cy, 0, cy - rect.bottom);

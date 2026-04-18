@@ -13,6 +13,7 @@ export function useKeyboardNav() {
     const onKey = (e: KeyboardEvent) => {
       const tag = (e.target as HTMLElement).tagName;
       if (tag === 'INPUT' || tag === 'TEXTAREA') return;
+      if (e.ctrlKey || e.metaKey || e.altKey) return;
       const page = MAP[e.key.toLowerCase()];
       if (page) { e.preventDefault(); setActivePage(page); }
     };
