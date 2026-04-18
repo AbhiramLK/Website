@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url><loc>https://abhiram.xyz</loc><changefreq>monthly</changefreq></url>
+<url><loc>https://abhiram.xyz/about</loc><changefreq>monthly</changefreq></url>
+<url><loc>https://abhiram.xyz/projects</loc><changefreq>monthly</changefreq></url>
+<url><loc>https://abhiram.xyz/blog</loc><changefreq>monthly</changefreq></url>
+<url><loc>https://abhiram.xyz/contact</loc><changefreq>monthly</changefreq></url>
+<url><loc>https://abhiram.xyz/blog/simulating-transactions-before-they-land</loc><changefreq>never</changefreq><lastmod>2026-03-15</lastmod></url>
+<url><loc>https://abhiram.xyz/blog/gas-abstraction-without-trust-assumptions</loc><changefreq>never</changefreq><lastmod>2026-02-10</lastmod></url>
+</urlset>
