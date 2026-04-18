@@ -10,6 +10,8 @@ interface Ctx {
   setIdle: (v: boolean) => void;
   rendered: Partial<Record<Page, boolean>>;
   markRendered: (p: Page) => void;
+  blogSlug: string | null;
+  setBlogSlug: (s: string | null) => void;
 }
 
 const SystemContext = createContext<Ctx | undefined>(undefined);
@@ -18,14 +20,15 @@ export function SystemProvider({ children }: { children: ReactNode }) {
   const [activePage, setActivePage] = useState<Page>('home');
   const [isIdle, setIdle] = useState(false);
   const [rendered, setRendered] = useState<Partial<Record<Page, boolean>>>({});
+  const [blogSlug, setBlogSlug] = useState<string | null>(null);
 
   const markRendered = useCallback((p: Page) => {
     setRendered(prev => ({ ...prev, [p]: true }));
   }, []);
 
   const value = useMemo(
-    () => ({ activePage, setActivePage, isIdle, setIdle, rendered, markRendered }),
-    [activePage, isIdle, rendered, markRendered]
+    () => ({ activePage, setActivePage, isIdle, setIdle, rendered, markRendered, blogSlug, setBlogSlug }),
+    [activePage, isIdle, rendered, markRendered, blogSlug]
   );
 
   return (

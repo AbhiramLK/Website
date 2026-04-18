@@ -1,0 +1,24 @@
+[
+  {
+    "id": "001",
+    "slug": "simulating-transactions-before-they-land",
+    "title": "Simulating Transactions Before They Land",
+    "date": "2026-03-15",
+    "body": "EVM trace analysis + pre-flight validation.\n\nWhen you submit a transaction to an EVM chain, you have already committed...",
+    "meta": {
+      "description": "EVM trace analysis and pre-flight transaction validation techniques.",
+      "keywords": ["EVM", "transaction simulation", "Web3 security"]
+    }
+  },
+  {
+    "id": "002",
+    "slug": "gas-abstraction-without-trust-assumptions",
+    "title": "Gas Abstraction Without Trust Assumptions",
+    "date": "2026-02-10",
+    "body": "Protocol design notes from g0.\n\nGas abstraction is a solved problem if you are willing to introduce trust...",
+    "meta": {
+      "description": "How g0 Protocol achieves gas abstraction without delegating trust.",
+      "keywords": ["gas abstraction", "g0 protocol", "EVM", "protocol design"]
+    }
+  }
+]

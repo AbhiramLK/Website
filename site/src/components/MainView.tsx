@@ -7,6 +7,7 @@ import { Home } from './pages/Home';
 import { About } from './pages/About';
 import { Projects } from './pages/Projects';
 import { Blog } from './pages/Blog';
+import { BlogPost } from './pages/BlogPost';
 import { Contact } from './pages/Contact';
 
 const ASCII_LEFT = `
@@ -19,7 +20,7 @@ const ASCII_LEFT = `
 `.trim();
 
 export function MainView() {
-  const { activePage, isIdle, setIdle } = useSystem();
+  const { activePage, blogSlug, isIdle, setIdle } = useSystem();
   useKeyboardNav();
 
   useEffect(() => {
@@ -35,7 +36,7 @@ export function MainView() {
     return () => { clearTimeout(t); window.removeEventListener('mousemove', reset); window.removeEventListener('keydown', reset); };
   }, [setIdle]);
 
-  const pages = { home: <Home />, about: <About />, projects: <Projects />, blog: <Blog />, contact: <Contact /> };
+  const pages = { home: <Home />, about: <About />, projects: <Projects />, blog: blogSlug ? <BlogPost /> : <Blog />, contact: <Contact /> };
 
   return (
     <Layout
