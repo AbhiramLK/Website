@@ -19,15 +19,17 @@ export default function App() {
       const t = setTimeout(() => setStage('loading'), 300);
       return () => clearTimeout(t);
     }
+    if (stage === 'loading-out') {
+      const t = setTimeout(() => setStage('ready'), 300);
+      return () => clearTimeout(t);
+    }
     if (stage === 'ready') {
-      requestAnimationFrame(() => setAppVisible(true));
+      const id = requestAnimationFrame(() => setAppVisible(true));
+      return () => cancelAnimationFrame(id);
     }
   }, [stage]);
 
-  const handleLoadingDone = useCallback(() => {
-    setStage('loading-out');
-    setTimeout(() => setStage('ready'), 300);
-  }, []);
+  const handleLoadingDone = useCallback(() => setStage('loading-out'), []);
 
   return (
     <SystemProvider>

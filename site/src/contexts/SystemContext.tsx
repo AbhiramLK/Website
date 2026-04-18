@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useCallback } from 'react';
+import { createContext, useContext, useState, useCallback, useMemo } from 'react';
 import type { ReactNode } from 'react';
 
 export type Page = 'home' | 'about' | 'projects' | 'blog' | 'contact';
@@ -23,8 +23,13 @@ export function SystemProvider({ children }: { children: ReactNode }) {
     setRendered(prev => ({ ...prev, [p]: true }));
   }, []);
 
+  const value = useMemo(
+    () => ({ activePage, setActivePage, isIdle, setIdle, rendered, markRendered }),
+    [activePage, isIdle, rendered, markRendered]
+  );
+
   return (
-    <SystemContext.Provider value={{ activePage, setActivePage, isIdle, setIdle, rendered, markRendered }}>
+    <SystemContext.Provider value={value}>
       {children}
     </SystemContext.Provider>
   );
