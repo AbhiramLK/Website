@@ -1,26 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
 
 interface Props {
-  src: string;       // URL to the JSON frames file
-  fps?: number;      // frames per second (default 12)
+  frames: string[][];  // pre-imported JSON frames
+  fps?: number;        // frames per second (default 15)
   className?: string;
 }
 
-export function AsciiAnimation({ src, fps = 12, className }: Props) {
-  const [frames, setFrames] = useState<string[][]>([]);
+export function AsciiAnimation({ frames, fps = 15, className }: Props) {
   const [index, setIndex] = useState(0);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
-
-  useEffect(() => {
-    let cancelled = false;
-    fetch(src)
-      .then(r => r.json())
-      .then((data: string[][]) => {
-        if (!cancelled) setFrames(data);
-      })
-      .catch(() => {});
-    return () => { cancelled = true; };
-  }, [src]);
 
   useEffect(() => {
     if (frames.length === 0) return;
