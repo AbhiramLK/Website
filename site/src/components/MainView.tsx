@@ -10,6 +10,7 @@ import { Blog } from './pages/Blog';
 import { BlogPost } from './pages/BlogPost';
 import { Contact } from './pages/Contact';
 import { Admin } from './pages/Admin';
+import { AsciiAnimation } from './AsciiAnimation';
 
 const ASCII_LEFT = `
  ██████╗
@@ -39,9 +40,13 @@ export function MainView() {
 
   const pages = { home: <Home />, about: <About />, projects: <Projects />, blog: blogSlug ? <BlogPost /> : <Blog />, contact: <Contact />, admin: <Admin /> };
 
+  const leftPanel = activePage === 'home'
+    ? <AsciiAnimation src="/ascii-frames.json" fps={15} className={isIdle ? '' : 'accent'} />
+    : <pre className={isIdle ? '' : 'accent'}>{ASCII_LEFT}</pre>;
+
   return (
     <Layout
-      left={<pre className={isIdle ? '' : 'accent'}>{ASCII_LEFT}</pre>}
+      left={leftPanel}
       right={pages[activePage]}
     />
   );
